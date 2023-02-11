@@ -19,6 +19,7 @@
     "stripe": "^11.9.1"
   },
   "devDependencies": {
+    "@rocketseat/eslint-config": "^1.2.0",
     "@types/node": "^18.11.19",
     "@types/react": "^18.0.27",
     "eslint": "8.33.0",
