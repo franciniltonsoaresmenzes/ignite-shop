@@ -33,7 +33,7 @@ export default function Home({ products }: HomeProps) {
         <Link
           key={product.id}
           href={`/product/${product.id}`}
-          legacyBehavior
+          legacyBehavior={false}
           prefetch={false}
         >
           <Product className="keen-slider__slide">
