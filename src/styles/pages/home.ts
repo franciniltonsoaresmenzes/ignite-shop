@@ -63,3 +63,69 @@ export const Product = styled('div', {
     },
   },
 })
+
+export const ProductLoading = styled('div', {
+  '> div': {
+    background: '$gray800',
+  },
+
+  display: 'grid',
+  gap: '1.5rem',
+  gridTemplateRows: '1.5fr 0.5fr',
+})
+
+export const DetailsLoading = styled('span', {
+  display: 'flex',
+  justifyContent: 'space-between',
+  height: '2.5rem',
+  gap: 50,
+
+  div: {
+    borderRadius: 8,
+    width: '50%',
+    background: '$gray800',
+  },
+
+  '> div': {
+    width: '20.625rem',
+  },
+
+  'div + div': {
+    width: '6.25rem',
+  },
+})
+
+export const CarouselArrow = styled('div', {
+  position: 'fixed',
+  right: 0,
+  top: 0,
+
+  width: '6rem',
+  height: '100vh',
+
+  background:
+    'linear-gradient(90deg, rgba(18, 18, 20, 0) 0%, rgba(18, 18, 20, 0.75) 100%)',
+
+  svg: {
+    position: 'absolute',
+    top: 'calc(50% - 48px/2)',
+    left: 16,
+  },
+
+  color: '$white',
+
+  variants: {
+    left: {
+      true: {
+        left: 0,
+        background:
+          'linear-gradient(90deg, rgba(18, 18, 20, 0.75) 0%,  rgba(18, 18, 20, 0) 100%)',
+      },
+    },
+    disabled: {
+      true: {
+        display: 'none',
+      },
+    },
+  },
+})
