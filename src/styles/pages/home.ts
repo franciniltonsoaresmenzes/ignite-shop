@@ -44,6 +44,24 @@ export const Product = styled('div', {
     opacity: 0,
     transition: 'all 0.2s ease-in-out',
 
+    '> div': {
+      display: 'flex',
+      flexDirection: 'column',
+    },
+
+    button: {
+      color: '$white',
+      background: '$green500',
+      border: 0,
+      padding: 12,
+      borderRadius: 6,
+      cursor: 'pointer',
+
+      '&:hover': {
+        background: '$green300',
+      },
+    },
+
     strong: {
       fontSize: '$lg',
       color: '$gray100',

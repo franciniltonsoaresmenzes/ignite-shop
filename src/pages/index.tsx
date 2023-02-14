@@ -16,7 +16,7 @@ import { stripe } from '../lib/stripe'
 import { GetStaticProps } from 'next'
 import Stripe from 'stripe'
 import Head from 'next/head'
-import { CaretLeft, CaretRight } from 'phosphor-react'
+import { CaretLeft, CaretRight, Handbag } from 'phosphor-react'
 import { useState } from 'react'
 
 interface HomeProps {
@@ -70,8 +70,13 @@ export default function Home({ products }: HomeProps) {
               >
                 <Image src={product.imageUrl} width={520} height={480} alt="" />
                 <footer>
-                  <strong>{product.name}</strong>
-                  <span>{product.price}</span>
+                  <div>
+                    <strong>{product.name}</strong>
+                    <span>{product.price}</span>
+                  </div>
+                  <button>
+                    <Handbag size={32} weight="bold" />
+                  </button>
                 </footer>
               </Product>
             </Link>
