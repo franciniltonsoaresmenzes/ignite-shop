@@ -1,22 +1,14 @@
 import { styled } from '..'
 
 export const MenuListContainer = styled('main', {
-  position: 'fixed',
+  position: 'absolute',
   zIndex: 1,
 
   width: '30rem',
   height: '100vh',
 
   top: 0,
-  right: '-100%',
-
-  variants: {
-    open: {
-      true: {
-        right: 0,
-      },
-    },
-  },
+  right: 0,
 
   background: '$gray800',
   padding: '3rem',

@@ -59,27 +59,27 @@ export default function Home({ products }: HomeProps) {
       <HomeContainer ref={sliderRef} className="keen-slider">
         {loading &&
           products.map((product, index) => (
-            <Link
+            <Product
+              className={`keen-slider__slide number-slide${index + 1}`}
               key={product.id}
-              href={`/product/${product.id}`}
-              legacyBehavior={false}
-              prefetch={false}
             >
-              <Product
-                className={`keen-slider__slide number-slide${index + 1}`}
+              <Link
+                href={`/product/${product.id}`}
+                legacyBehavior={false}
+                prefetch={false}
               >
                 <Image src={product.imageUrl} width={520} height={480} alt="" />
-                <footer>
-                  <div>
-                    <strong>{product.name}</strong>
-                    <span>{product.price}</span>
-                  </div>
-                  <button>
-                    <Handbag size={32} weight="bold" />
-                  </button>
-                </footer>
-              </Product>
-            </Link>
+              </Link>
+              <footer>
+                <div>
+                  <strong>{product.name}</strong>
+                  <span>{product.price}</span>
+                </div>
+                <button>
+                  <Handbag size={32} weight="bold" />
+                </button>
+              </footer>
+            </Product>
           ))}
 
         {!loading &&

@@ -4,9 +4,18 @@ export const CheckoutHeaderContainer = styled('button', {
   position: 'relative',
   padding: '0.75rem',
   background: '$gray800',
-  color: '$white',
+  color: '#8D8D99',
   borderRadius: 6,
   border: 0,
+  cursor: 'pointer',
+
+  variants: {
+    lenght: {
+      true: {
+        color: '$gray300',
+      },
+    },
+  },
 })
 
 export const CheckoutLenght = styled('span', {

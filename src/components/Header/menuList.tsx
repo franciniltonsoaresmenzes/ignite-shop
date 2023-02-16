@@ -8,17 +8,16 @@ import {
 import Image from 'next/image'
 import { X } from 'phosphor-react'
 import camisa1 from '../../assets/camisas/Camisa1.png'
+import * as Dialog from '@radix-ui/react-dialog'
 
-interface MenuListProps {
-  open?: boolean
-}
-
-export default function MenuList({ open }: MenuListProps) {
+export default function MenuList() {
   return (
-    <MenuListContainer open={open}>
-      <ButtonClose>
-        <X size={24} color="#8D8D99" />
-      </ButtonClose>
+    <MenuListContainer>
+      <Dialog.Close asChild>
+        <ButtonClose>
+          <X size={24} color="#8D8D99" />
+        </ButtonClose>
+      </Dialog.Close>
       <h2>Sacola de compras</h2>
       <div>
         <ProductMenuList>

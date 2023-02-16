@@ -9,31 +9,38 @@ import {
   CheckoutLenght,
 } from '../styles/components/checkoutHeader'
 import { Handbag } from 'phosphor-react'
-import { useState } from 'react'
+import * as Dialog from '@radix-ui/react-dialog'
+import Link from 'next/link'
 
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [openMenu, isOpenMenu] = useState(false)
-  const lenghtCheckout = 0
-
-  function handleOpenMenu() {
-    isOpenMenu(!openMenu)
-  }
+  const lenghtCheckout = 1
 
   return (
     <Container>
       <Header>
-        <Image src={logoImg} alt="" />
+        <Link href="/">
+          <Image src={logoImg} alt="" />
+        </Link>
 
-        <CheckoutHeaderContainer onClick={handleOpenMenu}>
-          {lenghtCheckout > 0 && (
-            <CheckoutLenght>{lenghtCheckout}</CheckoutLenght>
-          )}
-          <Handbag size={24} weight="bold" />
-        </CheckoutHeaderContainer>
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            <CheckoutHeaderContainer lenght={lenghtCheckout > 0}>
+              {lenghtCheckout > 0 && (
+                <CheckoutLenght>{lenghtCheckout}</CheckoutLenght>
+              )}
+              <Handbag size={24} weight="bold" />
+            </CheckoutHeaderContainer>
+          </Dialog.Trigger>
 
-        <MenuList open={openMenu} />
+          <Dialog.Portal>
+            <Dialog.Overlay />
+            <Dialog.Content>
+              <MenuList />
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
       </Header>
       <Component {...pageProps} />
     </Container>
