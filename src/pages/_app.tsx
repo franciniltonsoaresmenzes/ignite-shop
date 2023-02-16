@@ -11,6 +11,7 @@ import {
 import { Handbag } from 'phosphor-react'
 import * as Dialog from '@radix-ui/react-dialog'
 import Link from 'next/link'
+import { CartProvider } from 'use-shopping-cart'
 
 globalStyles()
 
@@ -18,31 +19,39 @@ export default function App({ Component, pageProps }: AppProps) {
   const lenghtCheckout = 0
 
   return (
-    <Container>
-      <Header>
-        <Link href="/">
-          <Image src={logoImg} alt="" />
-        </Link>
+    <CartProvider
+      cartMode="checkout-session"
+      currency="USD"
+      stripe={process.env.STRIPE_PUBLIC_KEY as string}
+      loading={<p aria-live="polite">Loading redux-persist...</p>}
+      shouldPersist
+    >
+      <Container>
+        <Header>
+          <Link href="/">
+            <Image src={logoImg} alt="" />
+          </Link>
 
-        <Dialog.Root>
-          <Dialog.Trigger asChild>
-            <CheckoutHeaderContainer lenght={lenghtCheckout > 0}>
-              {lenghtCheckout > 0 && (
-                <CheckoutLenght>{lenghtCheckout}</CheckoutLenght>
-              )}
-              <Handbag size={24} weight="bold" />
-            </CheckoutHeaderContainer>
-          </Dialog.Trigger>
+          <Dialog.Root>
+            <Dialog.Trigger asChild>
+              <CheckoutHeaderContainer lenght={lenghtCheckout > 0}>
+                {lenghtCheckout > 0 && (
+                  <CheckoutLenght>{lenghtCheckout}</CheckoutLenght>
+                )}
+                <Handbag size={24} weight="bold" />
+              </CheckoutHeaderContainer>
+            </Dialog.Trigger>
 
-          <Dialog.Portal>
-            <Dialog.Overlay />
-            <Dialog.Content>
-              <MenuList />
-            </Dialog.Content>
-          </Dialog.Portal>
-        </Dialog.Root>
-      </Header>
-      <Component {...pageProps} />
-    </Container>
+            <Dialog.Portal>
+              <Dialog.Overlay />
+              <Dialog.Content>
+                <MenuList />
+              </Dialog.Content>
+            </Dialog.Portal>
+          </Dialog.Root>
+        </Header>
+        <Component {...pageProps} />
+      </Container>
+    </CartProvider>
   )
 }
