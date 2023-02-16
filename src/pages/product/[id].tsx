@@ -37,7 +37,7 @@ export default function Product({ product }: ProductProps) {
     try {
       setIsCreatingChekcoutSession(true)
       const response = await axios.post('/api/checkout', {
-        priceId: product.defaultPriceId,
+        products: product.defaultPriceId,
       })
 
       const { checkoutUrl } = response.data

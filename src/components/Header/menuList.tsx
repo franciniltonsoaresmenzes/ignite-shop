@@ -30,13 +30,13 @@ export default function MenuList() {
 
   async function handleBuyProduct() {
     try {
+      setIsCreatingChekcoutSession(true)
       const response = await axios.post('/api/checkout', {
-        products: cartDetails,
+        products,
       })
       const { checkoutUrl } = response.data
 
       window.location.href = checkoutUrl
-      setIsCreatingChekcoutSession(true)
     } catch (err) {
       console.log(err)
       setIsCreatingChekcoutSession(false)

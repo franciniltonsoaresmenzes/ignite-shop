@@ -12,10 +12,15 @@ import { Handbag } from 'phosphor-react'
 import * as Dialog from '@radix-ui/react-dialog'
 import Link from 'next/link'
 import { CartProvider } from 'use-shopping-cart'
+import { useRouter } from 'next/router'
 
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { pathname } = useRouter()
+
+  const showCartButton = pathname !== '/success'
+
   const lenghtCheckout = 0
 
   return (
@@ -33,15 +38,16 @@ export default function App({ Component, pageProps }: AppProps) {
           </Link>
 
           <Dialog.Root>
-            <Dialog.Trigger asChild>
-              <CheckoutHeaderContainer lenght={lenghtCheckout > 0}>
-                {lenghtCheckout > 0 && (
-                  <CheckoutLenght>{lenghtCheckout}</CheckoutLenght>
-                )}
-                <Handbag size={24} weight="bold" />
-              </CheckoutHeaderContainer>
-            </Dialog.Trigger>
-
+            {showCartButton && (
+              <Dialog.Trigger asChild>
+                <CheckoutHeaderContainer lenght={lenghtCheckout > 0}>
+                  {lenghtCheckout > 0 && (
+                    <CheckoutLenght>{lenghtCheckout}</CheckoutLenght>
+                  )}
+                  <Handbag size={24} weight="bold" />
+                </CheckoutHeaderContainer>
+              </Dialog.Trigger>
+            )}
             <Dialog.Portal>
               <Dialog.Overlay />
               <Dialog.Content>

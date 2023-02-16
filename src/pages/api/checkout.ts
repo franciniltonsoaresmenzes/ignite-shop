@@ -5,7 +5,7 @@ interface Product {
   id: string
   name: string
   imageUrl: string
-  price: number
+  price: string
   defaultPriceId: string
 }
 
@@ -26,23 +26,14 @@ export default async function handler(
   const successUrl = `${process.env.NEXT_URL}/success?session_id={CHECKOUT_SESSION_ID}`
   const cancelUrl = `${process.env.NEXT_URL}/`
 
-  const s = products.map((product) => ({
-    price: product.defaultPriceId,
-    quantity: 1,
-  }))
-
-  console.log(s)
-
   const checkoutSession = await stripe.checkout.sessions.create({
     cancel_url: cancelUrl,
     success_url: successUrl,
     mode: 'payment',
-    line_items: [
-      {
-        price: products[0].defaultPriceId,
-        quantity: 1,
-      },
-    ],
+    line_items: products.map((product) => ({
+      price: product.defaultPriceId,
+      quantity: 1,
+    })),
   })
 
   return res.status(201).json({
