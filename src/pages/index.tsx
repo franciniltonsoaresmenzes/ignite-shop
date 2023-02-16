@@ -18,19 +18,27 @@ import Stripe from 'stripe'
 import Head from 'next/head'
 import { CaretLeft, CaretRight, Handbag } from 'phosphor-react'
 import { useState } from 'react'
+import { useShoppingCart } from 'use-shopping-cart'
+import { Product as IProduct } from 'use-shopping-cart/core'
+import { convertNumberInPrice } from '../hook/convertNumberInPrice'
 
 interface HomeProps {
   products: {
     id: string
     name: string
     imageUrl: string
-    price: string
+    price: number
+    defaultPriceId: string
   }[]
 }
 
 export default function Home({ products }: HomeProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loading, setLoading] = useState(false)
+
+  const { addItem, cartDetails } = useShoppingCart()
+
+  const productsCart = Object.values(cartDetails ?? {})
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     slides: { perView: 'auto', spacing: loading ? 20 : 19 },
@@ -41,6 +49,26 @@ export default function Home({ products }: HomeProps) {
       setLoading(true)
     },
   })
+
+  function handleAddItemCart(
+    e: MouseEvent<HTMLButtonElement>,
+    product: IProduct,
+  ) {
+    e.preventDefault()
+    if (!existProduct(product.id)) {
+      addItem(product)
+    }
+  }
+
+  function existProduct(idProduct: string) {
+    const exist =
+      productsCart.filter((products) => products.id === idProduct).length === 0
+    if (exist) {
+      return false
+    } else {
+      return true
+    }
+  }
 
   return (
     <>
@@ -64,9 +92,12 @@ export default function Home({ products }: HomeProps) {
                 <footer>
                   <div>
                     <strong>{product.name}</strong>
-                    <span>{product.price}</span>
+                    <span>{convertNumberInPrice(product.price)}</span>
                   </div>
-                  <button>
+                  <button
+                    onClick={(e) => handleAddItemCart(e, product)}
+                    disabled={existProduct(product.id)}
+                  >
                     <Handbag size={32} weight="bold" />
                   </button>
                 </footer>
@@ -106,10 +137,8 @@ export const getStaticProps: GetStaticProps = async () => {
       id: product.id,
       name: product.name,
       imageUrl: product.images[0],
-      price: new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-      }).format((price.unit_amount as number) / 100),
+      price: price.unit_amount as number,
+      defaultPriceId: price.id,
     }
   })
   return {

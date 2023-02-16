@@ -1,6 +1,9 @@
 import { styled } from '..'
 
 export const MenuListContainer = styled('main', {
+  display: 'flex',
+  flexDirection: 'column',
+
   position: 'absolute',
   zIndex: 1,
 
@@ -26,6 +29,14 @@ export const MenuListContainer = styled('main', {
   boxShadow: '-4px 0px 30px rgba(0, 0, 0, 0.8)',
 })
 
+export const MenuLisFlex = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+
+  gap: '1.5rem',
+  flex: 1,
+})
+
 export const ProductMenuList = styled('section', {
   display: 'flex',
   gap: '1.25rem',
@@ -40,6 +51,26 @@ export const DescriptionMenuList = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '0.5rem',
+
+  fontWeight: 700,
+  fontSize: '1rem',
+  lineHeight: 1.6,
+
+  h3: {
+    fontWeight: 400,
+    color: '$gray300',
+  },
+
+  span: {
+    color: '$gray100',
+  },
+
+  a: {
+    color: '$green500',
+    '&:hover': {
+      color: '$green300',
+    },
+  },
 })
 
 export const ButtonClose = styled('button', {
@@ -50,4 +81,29 @@ export const ButtonClose = styled('button', {
   top: '28px',
   right: '28px',
   cursor: 'pointer',
+})
+
+export const MenuLisFlexPrices = styled('div', {
+  display: 'flex',
+  justifyContent: 'space-between',
+
+  color: '$gray100',
+  lineHeight: 1.6,
+
+  span: {
+    fontWeight: 400,
+    fontSize: '1rem',
+  },
+  'span + span': {
+    fontSize: '1.125rem',
+    color: '$gray300',
+  },
+
+  h3: {
+    fontSize: '1.125rem',
+  },
+
+  'h3 + h3': {
+    fontSize: '1.5rem',
+  },
 })
