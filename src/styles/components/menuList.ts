@@ -22,6 +22,8 @@ export const MenuListContainer = styled('main', {
     marginTop: '1.5rem',
     marginBottom: '2rem',
   },
+
+  boxShadow: '-4px 0px 30px rgba(0, 0, 0, 0.8)',
 })
 
 export const ProductMenuList = styled('section', {

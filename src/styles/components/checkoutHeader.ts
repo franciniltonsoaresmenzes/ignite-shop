@@ -2,7 +2,13 @@ import { styled } from '..'
 
 export const CheckoutHeaderContainer = styled('button', {
   position: 'relative',
-  padding: '0.75rem',
+  width: '48px',
+  height: '48px',
+
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+
   background: '$gray800',
   color: '#8D8D99',
   borderRadius: 6,

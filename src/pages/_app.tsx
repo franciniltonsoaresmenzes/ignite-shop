@@ -15,7 +15,7 @@ import Link from 'next/link'
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
-  const lenghtCheckout = 1
+  const lenghtCheckout = 0
 
   return (
     <Container>

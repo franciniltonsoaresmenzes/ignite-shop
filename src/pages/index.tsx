@@ -33,15 +33,7 @@ export default function Home({ products }: HomeProps) {
   const [loading, setLoading] = useState(false)
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    breakpoints: {
-      '(min-width: 570px)': {
-        slides: { perView: 2, spacing: 24 },
-      },
-      '(min-width: 1000px)': {
-        slides: { perView: 'auto', spacing: 48 },
-      },
-    },
-    slides: { perView: 1, spacing: loading ? 20 : 19 },
+    slides: { perView: 'auto', spacing: loading ? 20 : 19 },
     slideChanged(slider) {
       setCurrentSlide(slider.track.details.rel)
     },
@@ -59,27 +51,27 @@ export default function Home({ products }: HomeProps) {
       <HomeContainer ref={sliderRef} className="keen-slider">
         {loading &&
           products.map((product, index) => (
-            <Product
-              className={`keen-slider__slide number-slide${index + 1}`}
+            <Link
+              href={`/product/${product.id}`}
+              legacyBehavior={false}
+              prefetch={false}
               key={product.id}
             >
-              <Link
-                href={`/product/${product.id}`}
-                legacyBehavior={false}
-                prefetch={false}
+              <Product
+                className={`keen-slider__slide number-slide${index + 1}`}
               >
                 <Image src={product.imageUrl} width={520} height={480} alt="" />
-              </Link>
-              <footer>
-                <div>
-                  <strong>{product.name}</strong>
-                  <span>{product.price}</span>
-                </div>
-                <button>
-                  <Handbag size={32} weight="bold" />
-                </button>
-              </footer>
-            </Product>
+                <footer>
+                  <div>
+                    <strong>{product.name}</strong>
+                    <span>{product.price}</span>
+                  </div>
+                  <button>
+                    <Handbag size={32} weight="bold" />
+                  </button>
+                </footer>
+              </Product>
+            </Link>
           ))}
 
         {!loading &&
