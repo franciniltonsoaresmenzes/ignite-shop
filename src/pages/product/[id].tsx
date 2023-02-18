@@ -67,6 +67,8 @@ export default function Product({ product }: ProductProps) {
     }
   }
 
+  const isCarTShopping = existProduct(product.id)
+
   return (
     <>
       <Head>
@@ -81,7 +83,7 @@ export default function Product({ product }: ProductProps) {
           <span>{convertNumberInPrice(parseInt(product.price))}</span>
           <p>{product.description}</p>
           <button
-            disabled={lenghtCheckout > 0}
+            disabled={isCarTShopping || lenghtCheckout > 0}
             onClick={() => handleAddItemCart(product)}
           >
             Colocar na sacola
