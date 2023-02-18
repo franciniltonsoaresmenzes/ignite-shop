@@ -20,7 +20,6 @@ export default function App({ Component, pageProps }: AppProps) {
       cartMode="checkout-session"
       currency="BRL"
       stripe={process.env.STRIPE_PUBLIC_KEY as string}
-      loading={<p aria-live="polite">Loading redux-persist...</p>}
       shouldPersist
     >
       <Container>

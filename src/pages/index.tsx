@@ -17,9 +17,8 @@ import { GetStaticProps } from 'next'
 import Stripe from 'stripe'
 import Head from 'next/head'
 import { CaretLeft, CaretRight, Handbag } from 'phosphor-react'
-import { useState } from 'react'
+import { useState, MouseEvent } from 'react'
 import { useShoppingCart } from 'use-shopping-cart'
-import { Product as IProduct } from 'use-shopping-cart/core'
 import { convertNumberInPrice } from '../hook/convertNumberInPrice'
 
 interface HomeProps {
@@ -30,6 +29,17 @@ interface HomeProps {
     price: number
     defaultPriceId: string
   }[]
+}
+
+interface IProduct {
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+  numberPrice: number
+  description: string
+  defaultPriceId: string
+  quantity?: number
 }
 
 export default function Home({ products }: HomeProps) {
