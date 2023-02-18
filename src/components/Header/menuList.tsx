@@ -14,7 +14,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Button } from '@/src/styles/components/Button'
 import { useShoppingCart } from 'use-shopping-cart'
 import { convertNumberInPrice } from '@/src/hook/convertNumberInPrice'
-import { useState, MouseEvent } from 'react'
+import { useState } from 'react'
 import axios from 'axios'
 
 export default function MenuList() {
