@@ -71,7 +71,7 @@ export const ButtonRemove = styled('button', {
   fontWeight: 700,
   fontSize: '1rem',
   lineHeight: 1.6,
-  width: 'auto',
+  width: 65,
   border: 0,
   background: 'transparent',
   color: '$green500',

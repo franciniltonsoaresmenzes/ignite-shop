@@ -34,10 +34,9 @@ interface IProduct {
 
 export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter()
-  const { cartDetails, addItem, cartCount } = useShoppingCart()
+  const { cartDetails, addItem } = useShoppingCart()
 
   const productsCart = Object.values(cartDetails ?? {})
-  const lenghtCheckout = cartCount ?? 0
 
   if (isFallback) {
     return <p>Loading</p>
@@ -83,7 +82,7 @@ export default function Product({ product }: ProductProps) {
           <span>{convertNumberInPrice(parseInt(product.price))}</span>
           <p>{product.description}</p>
           <button
-            disabled={isCarTShopping || lenghtCheckout > 0}
+            disabled={isCarTShopping}
             onClick={() => handleAddItemCart(product)}
           >
             Colocar na sacola
