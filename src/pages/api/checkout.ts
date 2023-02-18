@@ -5,8 +5,8 @@ interface Product {
   id: string
   name: string
   imageUrl: string
-  price: string
-  defaultPriceId: string
+  price: number
+  price_id: string
 }
 
 export default async function handler(
@@ -31,7 +31,7 @@ export default async function handler(
     success_url: successUrl,
     mode: 'payment',
     line_items: products.map((product) => ({
-      price: product.defaultPriceId,
+      price: product.price_id,
       quantity: 1,
     })),
   })
