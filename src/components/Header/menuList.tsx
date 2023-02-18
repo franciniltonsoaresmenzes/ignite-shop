@@ -20,7 +20,8 @@ import axios from 'axios'
 export default function MenuList() {
   const [isCreatingChekcoutSession, setIsCreatingChekcoutSession] =
     useState(false)
-  const { cartDetails, removeItem, totalPrice, cartCount } = useShoppingCart()
+  const { cartDetails, removeItem, totalPrice, cartCount, clearCart } =
+    useShoppingCart()
 
   const products = Object.values(cartDetails ?? {})
 
@@ -37,6 +38,7 @@ export default function MenuList() {
         products,
       })
       const { checkoutUrl } = response.data
+      clearCart()
 
       window.location.href = checkoutUrl
     } catch (err) {
