@@ -79,7 +79,7 @@ export default function MenuList() {
         </MenuLisFlexPrices>
       </div>
       <Button
-        disabled={isCreatingChekcoutSession || !lenghtCheckout > 0}
+        disabled={isCreatingChekcoutSession || lenghtCheckout > 0}
         onClick={handleBuyProduct}
       >
         Finalizar compra
