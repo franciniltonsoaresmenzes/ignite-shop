@@ -35,21 +35,17 @@ interface IProduct {
   id: string
   name: string
   imageUrl: string
-  price: string
-  numberPrice: number
-  description: string
+  price: number
   defaultPriceId: string
-  quantity?: number
 }
 
 export default function Home({ products }: HomeProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loading, setLoading] = useState(false)
 
-  const { addItem, cartDetails, cartCount } = useShoppingCart()
+  const { addItem, cartDetails } = useShoppingCart()
 
   const productsCart = Object.values(cartDetails ?? {})
-  console.log(cartCount)
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     slides: { perView: 'auto', spacing: loading ? 20 : 19 },
@@ -67,7 +63,14 @@ export default function Home({ products }: HomeProps) {
   ) {
     e.preventDefault()
     if (!existProduct(product.id)) {
-      addItem(product)
+      addItem({
+        currency: 'BRL',
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        price_id: product.defaultPriceId,
+        image: product.imageUrl,
+      })
     }
   }
 

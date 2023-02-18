@@ -56,7 +56,12 @@ export default function MenuList() {
         {products.map((product) => (
           <ProductMenuList key={product.id}>
             <ProductMenuListImage>
-              <Image src={product.imageUrl} width={95} height={95} alt="" />
+              <Image
+                src={product.image as string}
+                width={95}
+                height={95}
+                alt=""
+              />
             </ProductMenuListImage>
             <DescriptionMenuList>
               <h3>{product.name}</h3>

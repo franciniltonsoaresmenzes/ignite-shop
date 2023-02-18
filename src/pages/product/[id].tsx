@@ -11,7 +11,6 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Stripe from 'stripe'
 import { useShoppingCart } from 'use-shopping-cart'
-import { Product as IProduct } from 'use-shopping-cart/core'
 
 interface ProductProps {
   product: {
@@ -22,6 +21,15 @@ interface ProductProps {
     description: string
     defaultPriceId: string
   }
+}
+
+interface IProduct {
+  id: string
+  name: string
+  imageUrl: string
+  price: string
+  description: string
+  defaultPriceId: string
 }
 
 export default function Product({ product }: ProductProps) {
@@ -37,7 +45,15 @@ export default function Product({ product }: ProductProps) {
 
   function handleAddItemCart(product: IProduct) {
     if (!existProduct(product.id)) {
-      addItem(product)
+      addItem({
+        currency: 'BRL',
+        id: product.id,
+        name: product.name,
+        price: parseInt(product.price),
+        price_id: product.defaultPriceId,
+        image: product.imageUrl,
+        description: product.description,
+      })
     }
   }
 
