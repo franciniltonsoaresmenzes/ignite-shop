@@ -5,13 +5,13 @@ import {
   ProductContainer,
   ProductDetails,
 } from '@/src/styles/pages/product'
-import axios from 'axios'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
 import Stripe from 'stripe'
+import { useShoppingCart } from 'use-shopping-cart'
+import { Product as IProduct } from 'use-shopping-cart/core'
 
 interface ProductProps {
   product: {
@@ -26,26 +26,27 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
   const { isFallback } = useRouter()
-  const [isCreatingChekcoutSession, setIsCreatingChekcoutSession] =
-    useState(false)
+  const { cartDetails, addItem, cartCount } = useShoppingCart()
+
+  const productsCart = Object.values(cartDetails ?? {})
 
   if (isFallback) {
     return <p>Loading</p>
   }
 
-  async function handleBuyProduct() {
-    try {
-      setIsCreatingChekcoutSession(true)
-      const response = await axios.post('/api/checkout', {
-        products: product.defaultPriceId,
-      })
+  function handleAddItemCart(product: IProduct) {
+    if (!existProduct(product.id)) {
+      addItem(product)
+    }
+  }
 
-      const { checkoutUrl } = response.data
-
-      window.location.href = checkoutUrl
-    } catch (err) {
-      setIsCreatingChekcoutSession(false)
-      alert('Falha no checkout' + err)
+  function existProduct(idProduct: string) {
+    const exist =
+      productsCart.filter((products) => products.id === idProduct).length === 0
+    if (exist) {
+      return false
+    } else {
+      return true
     }
   }
 
@@ -63,8 +64,8 @@ export default function Product({ product }: ProductProps) {
           <span>{convertNumberInPrice(parseInt(product.price))}</span>
           <p>{product.description}</p>
           <button
-            disabled={isCreatingChekcoutSession}
-            onClick={handleBuyProduct}
+            disabled={!!cartCount > 0}
+            onClick={() => handleAddItemCart(product)}
           >
             Colocar na sacola
           </button>

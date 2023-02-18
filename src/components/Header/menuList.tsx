@@ -19,9 +19,11 @@ import axios from 'axios'
 export default function MenuList() {
   const [isCreatingChekcoutSession, setIsCreatingChekcoutSession] =
     useState(false)
-  const { cartDetails, removeItem, totalPrice } = useShoppingCart()
+  const { cartDetails, removeItem, totalPrice, cartCount } = useShoppingCart()
 
   const products = Object.values(cartDetails ?? {})
+
+  const lenghtCheckout = cartCount ?? 0
 
   function handleRemoveItemCart(e: MouseEvent<HTMLLinkElement>, id: string) {
     e.preventDefault()
@@ -69,14 +71,17 @@ export default function MenuList() {
       <div>
         <MenuLisFlexPrices>
           <span>Quantidade</span>
-          <span>{products.length} itens</span>
+          <span>{lenghtCheckout} itens</span>
         </MenuLisFlexPrices>
         <MenuLisFlexPrices>
           <h3>Valor total</h3>
           <h3>{convertNumberInPrice(totalPrice as number)}</h3>
         </MenuLisFlexPrices>
       </div>
-      <Button disabled={isCreatingChekcoutSession} onClick={handleBuyProduct}>
+      <Button
+        disabled={isCreatingChekcoutSession || !lenghtCheckout > 0}
+        onClick={handleBuyProduct}
+      >
         Finalizar compra
       </Button>
     </MenuListContainer>

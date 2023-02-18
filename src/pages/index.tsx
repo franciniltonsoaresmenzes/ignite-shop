@@ -36,9 +36,10 @@ export default function Home({ products }: HomeProps) {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loading, setLoading] = useState(false)
 
-  const { addItem, cartDetails } = useShoppingCart()
+  const { addItem, cartDetails, cartCount } = useShoppingCart()
 
   const productsCart = Object.values(cartDetails ?? {})
+  console.log(cartCount)
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     slides: { perView: 'auto', spacing: loading ? 20 : 19 },
