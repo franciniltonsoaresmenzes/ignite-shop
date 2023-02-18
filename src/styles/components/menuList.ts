@@ -64,12 +64,19 @@ export const DescriptionMenuList = styled('div', {
   span: {
     color: '$gray100',
   },
+})
 
-  a: {
-    color: '$green500',
-    '&:hover': {
-      color: '$green300',
-    },
+export const ButtonRemove = styled('button', {
+  display: 'block',
+  fontWeight: 700,
+  fontSize: '1rem',
+  lineHeight: 1.6,
+  width: 'auto',
+  border: 0,
+  background: 'transparent',
+  color: '$green500',
+  '&:hover': {
+    color: '$green300',
   },
 })
 

@@ -1,5 +1,6 @@
 import {
   ButtonClose,
+  ButtonRemove,
   DescriptionMenuList,
   MenuLisFlex,
   MenuLisFlexPrices,
@@ -13,7 +14,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import { Button } from '@/src/styles/components/Button'
 import { useShoppingCart } from 'use-shopping-cart'
 import { convertNumberInPrice } from '@/src/hook/convertNumberInPrice'
-import { useState } from 'react'
+import { useState, MouseEvent } from 'react'
 import axios from 'axios'
 
 export default function MenuList() {
@@ -25,8 +26,7 @@ export default function MenuList() {
 
   const lenghtCheckout = cartCount ?? 0
 
-  function handleRemoveItemCart(e: MouseEvent<HTMLLinkElement>, id: string) {
-    e.preventDefault()
+  function handleRemoveItemCart(id: string) {
     removeItem(id)
   }
 
@@ -61,9 +61,9 @@ export default function MenuList() {
             <DescriptionMenuList>
               <h3>{product.name}</h3>
               <span>{convertNumberInPrice(product.price)}</span>
-              <a href="" onClick={(e) => handleRemoveItemCart(e, product.id)}>
+              <ButtonRemove onClick={() => handleRemoveItemCart(product.id)}>
                 Remover
-              </a>
+              </ButtonRemove>
             </DescriptionMenuList>
           </ProductMenuList>
         ))}
