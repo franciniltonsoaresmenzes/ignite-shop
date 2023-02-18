@@ -2,7 +2,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 import {
   CheckoutHeaderContainer,
   CheckoutLenght,
-} from '@/src/styles/components/checkoutHeader'
+} from '../../styles/components/checkoutHeader'
 import { Handbag } from 'phosphor-react'
 import { useShoppingCart } from 'use-shopping-cart'
 import MenuList from './menuList'

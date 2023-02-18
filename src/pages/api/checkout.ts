@@ -1,4 +1,4 @@
-import { stripe } from '@/src/lib/stripe'
+import { stripe } from '../../lib/stripe'
 import { NextApiRequest, NextApiResponse } from 'next'
 
 interface Product {

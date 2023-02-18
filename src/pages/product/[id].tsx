@@ -1,5 +1,5 @@
-import { convertNumberInPrice } from '@/src/hook/convertNumberInPrice'
-import { stripe } from '@/src/lib/stripe'
+import { convertNumberInPrice } from '../../hook/convertNumberInPrice'
+import { stripe } from '../../lib/stripe'
 import {
   ImageContainer,
   ProductContainer,
