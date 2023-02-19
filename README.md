@@ -16,7 +16,6 @@
   Desafio feito pela rockeseat para introduzir conceitos do Next js como Server-Side Renderin, Static Site Generation e file-system router que tem objetivo de configurar 
   rotas através de pastas.
  <p/>
- #### 🎲 Rodando a aplicação (Frontend) 
 
 ```bash
 
