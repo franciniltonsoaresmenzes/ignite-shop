@@ -18,8 +18,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <CartProvider
       cartMode="checkout-session"
-      currency="BRL"
-      stripe={process.env.STRIPE_PUBLIC_KEY as string}
+      stripe=""
+      currency="USD"
+      loading={<p aria-live="polite">Loading</p>}
       shouldPersist
     >
       <Container>
