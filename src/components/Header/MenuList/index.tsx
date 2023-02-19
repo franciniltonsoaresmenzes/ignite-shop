@@ -7,7 +7,8 @@ import {
   MenuListContainer,
   ProductMenuList,
   ProductMenuListImage,
-} from '@/src/styles/components/menuList'
+  Subtitle,
+} from './styles'
 import Image from 'next/image'
 import { X } from 'phosphor-react'
 import * as Dialog from '@radix-ui/react-dialog'
@@ -17,7 +18,7 @@ import { convertNumberInPrice } from '@/src/hook/convertNumberInPrice'
 import { useState } from 'react'
 import axios from 'axios'
 
-export default function MenuList() {
+export function MenuList() {
   const [isCreatingChekcoutSession, setIsCreatingChekcoutSession] =
     useState(false)
   const { cartDetails, removeItem, totalPrice, cartCount, clearCart } =
@@ -53,7 +54,7 @@ export default function MenuList() {
           <X size={24} color="#8D8D99" />
         </ButtonClose>
       </Dialog.Close>
-      <h2>Sacola de compras</h2>
+      <Subtitle>Sacola de compras</Subtitle>
       <MenuLisFlex>
         {products.map((product) => (
           <ProductMenuList key={product.id}>

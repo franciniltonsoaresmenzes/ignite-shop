@@ -1,13 +1,10 @@
 import * as Dialog from '@radix-ui/react-dialog'
-import {
-  CheckoutHeaderContainer,
-  CheckoutLenght,
-} from '../../styles/components/checkoutHeader'
+import { CheckoutHeaderContainer, CheckoutLenght, Overlay } from './styles'
 import { Handbag } from 'phosphor-react'
 import { useShoppingCart } from 'use-shopping-cart'
-import MenuList from './menuList'
+import { MenuList } from '../MenuList'
 
-export default function Cart() {
+export function Cart() {
   const { cartCount } = useShoppingCart()
   const lenghtCheckout = cartCount ?? 0
   return (
@@ -21,7 +18,7 @@ export default function Cart() {
         </CheckoutHeaderContainer>
       </Dialog.Trigger>
       <Dialog.Portal>
-        <Dialog.Overlay />
+        <Overlay />
         <Dialog.Content>
           <MenuList />
         </Dialog.Content>

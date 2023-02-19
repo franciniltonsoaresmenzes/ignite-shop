@@ -6,7 +6,7 @@ import { Container, Header } from '../styles/pages/app'
 import Link from 'next/link'
 import { CartProvider } from 'use-shopping-cart'
 import { useRouter } from 'next/router'
-import Cart from '../components/Header/cart'
+import { Cart } from '../components/Header/Cart'
 
 globalStyles()
 

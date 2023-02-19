@@ -1,4 +1,5 @@
-import { styled } from '..'
+import { styled } from '@/src/styles'
+import * as Dialog from '@radix-ui/react-dialog'
 
 export const MenuListContainer = styled('main', {
   display: 'flex',
@@ -16,17 +17,17 @@ export const MenuListContainer = styled('main', {
   background: '$gray800',
   padding: '3rem',
 
-  h2: {
-    color: '$gray100',
-    fontSize: '1.25rem',
-    fontWeight: 700,
-    lineHeight: 1.6,
-
-    marginTop: '1.5rem',
-    marginBottom: '2rem',
-  },
-
   boxShadow: '-4px 0px 30px rgba(0, 0, 0, 0.8)',
+})
+
+export const Subtitle = styled(Dialog.Title, {
+  color: '$gray100',
+  fontSize: '1.25rem',
+  fontWeight: 700,
+  lineHeight: 1.6,
+
+  marginTop: '1.5rem',
+  marginBottom: '2rem',
 })
 
 export const MenuLisFlex = styled('div', {
